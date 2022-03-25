@@ -1,7 +1,7 @@
 <template>
   <div
     ref="root"
-    :class="classes"
+    :class="rootClasses"
   >
     <div
       ref="wrap"
@@ -41,7 +41,6 @@
 <script lang="ts">
 import {
   defineComponent,
-  PropType,
   onMounted,
   watch,
   ref,
@@ -49,14 +48,18 @@ import {
   nextTick,
   provide
 } from 'vue';
+import type { PropType } from 'vue';
 
 import { validateArray } from '@/qComponents/helpers';
 import { isServer } from '@/qComponents/constants/isServer';
 import { useResizeListener } from '@/qComponents/hooks';
 import type { Nullable, Optional, UnwrappedInstance } from '#/helpers';
 
-import QBar from './QBar.vue';
+import QBar from './components/QBar/QBar.vue';
+import type { QBarInstance } from './components/QBar/types';
+
 import type {
+  Classes,
   QScrollbarInstance,
   QScrollbarProps,
   QScrollbarPropScrollTo,
@@ -64,14 +67,14 @@ import type {
   QScrollbarPropWrapClass,
   QScrollbarPropViewClass,
   QScrollbarPropViewStyle,
-  QScrollbarProvider,
-  QBarInstance
+  QScrollbarProvider
 } from './types';
 
 const OFFSET = -10;
 
 export default defineComponent({
   name: 'QScrollbar',
+
   componentName: 'QScrollbar',
 
   components: { QBar },
@@ -102,7 +105,7 @@ export default defineComponent({
      * custom wrapper content class (it helps you to style content)
      */
     wrapClass: {
-      type: [Object, String, Array] as PropType<QScrollbarPropWrapClass>,
+      type: [String, Object, Array] as PropType<QScrollbarPropWrapClass>,
       default: null
     },
     /**
@@ -116,14 +119,14 @@ export default defineComponent({
      * custom inner content class
      */
     viewClass: {
-      type: [Object, String, Array] as PropType<QScrollbarPropViewClass>,
+      type: [String, Object, Array] as PropType<QScrollbarPropViewClass>,
       default: null
     },
     /**
      * custom inner content class
      */
     viewStyle: {
-      type: [Object, String, Array] as PropType<QScrollbarPropViewStyle>,
+      type: [String, Object, Array] as PropType<QScrollbarPropViewStyle>,
       default: null
     },
     /**
@@ -146,7 +149,7 @@ export default defineComponent({
     const isXBarShown = computed<boolean>(() => sizeWidth.value !== '');
     const isYBarShown = computed<boolean>(() => sizeHeight.value !== '');
 
-    const classes = computed<Record<string, boolean>>(() => ({
+    const rootClasses = computed<Classes>(() => ({
       'q-scrollbar': true,
       'q-scrollbar_visible': Boolean(props.visible),
       'q-scrollbar_has-horizontal-bar': isXBarShown.value,
@@ -237,7 +240,7 @@ export default defineComponent({
       isYBarShown,
       moveX,
       moveY,
-      classes,
+      rootClasses,
       wrapClasses,
       handleScroll,
       update

@@ -53,13 +53,17 @@ import type { PropType } from 'vue';
 import { validateArray } from '@/qComponents/helpers';
 import { isServer } from '@/qComponents/constants/isServer';
 import { useResizeListener } from '@/qComponents/hooks';
-import type { Nullable, Optional, UnwrappedInstance } from '#/helpers';
+import type {
+  Nullable,
+  Optional,
+  UnwrappedInstance,
+  ClassValue
+} from '#/helpers';
 
 import QBar from './components/QBar/QBar.vue';
 import type { QBarInstance } from './components/QBar/types';
 
 import type {
-  Classes,
   QScrollbarInstance,
   QScrollbarProps,
   QScrollbarPropScrollTo,
@@ -149,7 +153,7 @@ export default defineComponent({
     const isXBarShown = computed<boolean>(() => sizeWidth.value !== '');
     const isYBarShown = computed<boolean>(() => sizeHeight.value !== '');
 
-    const rootClasses = computed<Classes>(() => ({
+    const rootClasses = computed<ClassValue>(() => ({
       'q-scrollbar': true,
       'q-scrollbar_visible': Boolean(props.visible),
       'q-scrollbar_has-horizontal-bar': isXBarShown.value,

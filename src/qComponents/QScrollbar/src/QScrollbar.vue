@@ -67,10 +67,12 @@ import type {
   QScrollbarInstance,
   QScrollbarProps,
   QScrollbarPropScrollTo,
+  QScrollbarPropVisible,
   QScrollbarPropTheme,
   QScrollbarPropWrapClass,
   QScrollbarPropViewClass,
   QScrollbarPropViewStyle,
+  QScrollbarPropNoResize,
   QScrollbarProvider
 } from './types';
 
@@ -97,7 +99,7 @@ export default defineComponent({
      * whether scrollbar is always visible
      */
     visible: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean as PropType<QScrollbarPropVisible>,
       default: false
     },
     /**
@@ -140,7 +142,7 @@ export default defineComponent({
      * whether is resizeListener will watch for parent
      */
     noresize: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean as PropType<QScrollbarPropNoResize>,
       default: false
     }
   },

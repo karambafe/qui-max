@@ -70,6 +70,7 @@ import type {
   QScrollbarPropVisible,
   QScrollbarPropTheme,
   QScrollbarPropWrapClass,
+  QScrollbarPropViewTag,
   QScrollbarPropViewClass,
   QScrollbarPropViewStyle,
   QScrollbarPropNoResize,
@@ -95,6 +96,7 @@ export default defineComponent({
         : HTMLElement) as PropType<QScrollbarPropScrollTo>,
       default: null
     },
+
     /**
      * whether scrollbar is always visible
      */
@@ -102,6 +104,7 @@ export default defineComponent({
       type: Boolean as PropType<QScrollbarPropVisible>,
       default: false
     },
+
     /**
      * changes style
      */
@@ -110,6 +113,7 @@ export default defineComponent({
       default: 'primary',
       validator: validateArray<QScrollbarPropTheme>(['primary', 'secondary'])
     },
+
     /**
      * custom wrapper content class (it helps you to style content)
      */
@@ -117,13 +121,15 @@ export default defineComponent({
       type: [String, Object, Array] as PropType<QScrollbarPropWrapClass>,
       default: null
     },
+
     /**
      * custom inner content tag
      */
     viewTag: {
-      type: String as PropType<string>,
+      type: String as PropType<QScrollbarPropViewTag>,
       default: 'div'
     },
+
     /**
      * custom inner content class
      */
@@ -131,6 +137,7 @@ export default defineComponent({
       type: [String, Object, Array] as PropType<QScrollbarPropViewClass>,
       default: null
     },
+
     /**
      * custom inner content class
      */
@@ -138,6 +145,7 @@ export default defineComponent({
       type: [String, Object, Array] as PropType<QScrollbarPropViewStyle>,
       default: null
     },
+
     /**
      * whether is resizeListener will watch for parent
      */

@@ -38,6 +38,11 @@ import type {
   QButtonPropSize,
   QButtonPropIcon,
   QButtonPropNativeType,
+  QButtonPropLoading,
+  QButtonPropDisabled,
+  QButtonPropAutofocus,
+  QButtonPropCircle,
+  QButtonPropFullWidth,
   QButtonInstance
 } from './types';
 
@@ -89,7 +94,7 @@ export default defineComponent({
      * whether to show loader inside button
      */
     loading: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean as PropType<QButtonPropLoading>,
       default: false
     },
 
@@ -97,7 +102,7 @@ export default defineComponent({
      * whether the button is disabled
      */
     disabled: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean as PropType<QButtonPropDisabled>,
       default: false
     },
 
@@ -105,7 +110,7 @@ export default defineComponent({
      * as native button autofocus
      */
     autofocus: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean as PropType<QButtonPropAutofocus>,
       default: false
     },
 
@@ -113,7 +118,7 @@ export default defineComponent({
      * change button's shape to circle (use with type icon)
      */
     circle: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean as PropType<QButtonPropCircle>,
       default: false
     },
 
@@ -121,7 +126,7 @@ export default defineComponent({
      * sets button width to 100%
      */
     fullWidth: {
-      type: Boolean as PropType<boolean>,
+      type: Boolean as PropType<QButtonPropFullWidth>,
       default: false
     }
   },
